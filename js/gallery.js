@@ -98,8 +98,8 @@ function handleImages(event) {
     <img
       src="${image.original}"
       alt="${image.description}"
-      width: 1112px;
-      height: 640px;
+      width="1112"
+      height="640"
     />
     </div>`,
 {
