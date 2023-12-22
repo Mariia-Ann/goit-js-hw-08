@@ -64,7 +64,6 @@ const images = [
   },
 ];
 
-// Object in HTML
 const createMarkup = ({ preview, original, description }) =>
   `
   <li class="gallery-item">
@@ -84,7 +83,6 @@ const markup = images.map(createMarkup).join("");
 const gallery = document.querySelector(".gallery");
 gallery.insertAdjacentHTML("beforeend", markup);
 
-// Подія Click
 
 gallery.addEventListener("click", handleImages);
 
@@ -118,30 +116,3 @@ function handleImages(event) {
     instance.close();
   }
 }
-
-
-
-
-
-
-
-// function closeModal (e) {
-//     if (e.code !== "Escape") return;
-//     instance.close();
-// }
-
-
-//  Close modal - not work
-// const modal = document.querySelector(".modal");
-
-// const closeModal = (e) => {
-//     if (e.code === "Escape") {
-//         modal.classList.remove("open");
-//         document.removeEventListener("keydown", closeModal);
-//     }
-// }
-
-// gallery.addEventListener("click", () => {
-//     modal.classList.add("open");
-//     document.addEventListener("keydown", closeModal);
-// });
