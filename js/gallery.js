@@ -89,29 +89,29 @@ gallery.addEventListener("click", handleImages);
 function handleImages(event) {
   event.preventDefault();
   const imageSource = event.target.dataset.source;
-  const image = images.find(({ original }) => original === imageSource);
+  const altName = event.target.alt;
 
   const instance = basicLightbox.create(`
 	<div class="modal">
     <img
-      src="${image.original}"
-      alt="${image.description}"
+      src="${imageSource}"
+      alt="${altName}"
       width="1112"
       height="640"
     />
     </div>`,
 {
     onShow: () => {
-        document.addEventListener('keydown', EscKeyPress);
+        document.addEventListener('keydown', escKeyPress);
     },
 	onClose: () => {
-        document.removeEventListener('keydown', EscKeyPress);
+        document.removeEventListener('keydown', escKeyPress);
     }
 }
     );
     instance.show();
   
-  function EscKeyPress(e) {
+  function escKeyPress(e) {
     if (e.code !== "Escape") return;
     instance.close();
   }
