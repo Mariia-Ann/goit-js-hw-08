@@ -83,34 +83,37 @@ const markup = images.map(createMarkup).join("");
 const gallery = document.querySelector(".gallery");
 gallery.insertAdjacentHTML("beforeend", markup);
 
-
 gallery.addEventListener("click", handleImages);
 
 function handleImages(event) {
   event.preventDefault();
   const imageSource = event.target.dataset.source;
   const altName = event.target.alt;
+  if (event.target === event.currentTarget) {
+    return;
+  }
+  //   const image = images(() => original === imageSource);
 
-  const instance = basicLightbox.create(`
+  const instance = basicLightbox.create(
+    `
 	<div class="modal">
     <img
+      class="modal-img"
       src="${imageSource}"
       alt="${altName}"
-      width="1112"
-      height="640"
     />
     </div>`,
-{
-    onShow: () => {
-        document.addEventListener('keydown', escKeyPress);
-    },
-	onClose: () => {
-        document.removeEventListener('keydown', escKeyPress);
+    {
+      onShow: () => {
+        document.addEventListener("keydown", escKeyPress);
+      },
+      onClose: () => {
+        document.removeEventListener("keydown", escKeyPress);
+      },
     }
-}
-    );
-    instance.show();
-  
+  );
+  instance.show();
+
   function escKeyPress(e) {
     if (e.code !== "Escape") return;
     instance.close();
